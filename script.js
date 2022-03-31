@@ -1,1 +1,1 @@
-alert("js oneline")
+alert("Hello js")
