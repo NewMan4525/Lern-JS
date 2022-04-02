@@ -1,17 +1,16 @@
-let title = 'project X';
-let screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 100;
+'use strict';
+
+//let title = prompt('Как называется ваш проект?','project X');
+//let screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
+let screenPrice = Number(prompt('Сколько будет стоить данная работа?',12000));
 let rollback = 10;
-let fullPrice = 100000;
-let adaptive = true;
+//let adaptive = confirm('Нужен ли адаптив на сайте?');
+//let service1 = prompt('Какой дополнительный тип услуги нужен?','google maps integrate');
+let servicePrice1 = Number(prompt('Сколько будет стоить интеграция с google maps?',10000));
+//let service2 = prompt('Какой дополнительный тип услуги нужен?','Data base connect');
+let servicePrice2 = Number(prompt('Сколько будет стоить подключение Data base?',10000));
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+let servicePercentPrice = Math.ceil( fullPrice - (fullPrice /100*rollback));
 
-console.log(title);
-console.log(fullPrice);
-console.log(adaptive);
-
-console.log(screens.length);
-
-console.log("Стоймость верстки экранов",screenPrice,"долларов" );
-console.log("Стоимость разработки сайта", `${fullPrice}`, "юани" );
-console.log(screens.toLowerCase().split(", "))
-console.log(fullPrice * (rollback/100))
+//console.log(fullPrice)
+console.log(servicePercentPrice)
