@@ -28,6 +28,8 @@ const appData = {
 	},
 
 	asking: function () {
+		let arr = [];
+
 		do {
 			appData.title = prompt('Как называется ваш проект?', '     prOject X');
 		} while (appData.isNumber(appData.title));
@@ -51,7 +53,6 @@ const appData = {
 		}
 
 
-
 		for (let i = 0; i < 2; i++) {
 			let name;
 			do {
@@ -63,6 +64,12 @@ const appData = {
 				price = Number(prompt('Сколько это будет стоить?', 1000));
 			} while (!appData.isNumber(price));
 
+			arr[i] = name; //записываем значения при каждой итерации
+
+			if (arr[0] === arr[1]) {
+				name = name + ' ' + 'дополнительно';
+			}
+
 			appData.services[name] = +price;
 
 		}
@@ -70,9 +77,11 @@ const appData = {
 	},
 
 	addPrices: function () {
-		for (let screen of appData.screens) {
-			appData.screenPrice += +screen.price;
-		}
+
+		appData.screenPrice = appData.screens.reduce((sum, item) => {
+			return sum + Number(item.price);
+		}, 0);
+
 		for (let key in appData.services) {
 			appData.allServicePrices += appData.services[key];
 		}
