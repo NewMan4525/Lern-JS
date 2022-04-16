@@ -1,6 +1,25 @@
 'use strict';
 
+let screens = document.querySelectorAll('.screen');
+const dom = {
+	title: document.getElementsByTagName('h1')[0],
+	btns: document.getElementsByClassName('handler_btn'),
+	btnPlus: document.querySelector('.screen-btn'),
+	otherPercent: document.querySelectorAll('.other-items.percent'),
+	otherNumber: document.querySelectorAll('.other-items.number'),
+	inputRange: document.querySelector('.main-controls__range > [type = "range"]'),
+	getTotals: () => {
+		let totalInputs = document.getElementsByClassName('total-input');
+		for (let i = 0; i < 5; i++) {
+			let totalInput = dom['totalInput' + ' ' + i] = totalInputs[`${i}`];
+		}
+	}
+
+};
+
+
 const appData = {
+
 	title: '',
 	screens: [],
 	screenPrice: 0,
@@ -124,4 +143,6 @@ const appData = {
 
 };
 
+dom.getTotals();
+console.log(screens, dom);
 appData.start();
