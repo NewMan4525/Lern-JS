@@ -64,7 +64,7 @@ const appData = {
 				price = Number(prompt('Сколько это будет стоить?', 1000));
 			} while (!appData.isNumber(price));
 
-			arr[i] = name; //записываем значения при каждой итерации
+			arr[i] = name;
 
 			if (arr[0] === arr[1]) {
 				name = name + ' ' + 'дополнительно';
