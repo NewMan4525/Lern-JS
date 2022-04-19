@@ -1,21 +1,25 @@
 'use strict';
 
-let screens = document.querySelectorAll('.screen');
-const dom = {
-	title: document.getElementsByTagName('h1')[0],
-	btns: document.getElementsByClassName('handler_btn'),
-	btnPlus: document.querySelector('.screen-btn'),
-	otherPercent: document.querySelectorAll('.other-items.percent'),
-	otherNumber: document.querySelectorAll('.other-items.number'),
-	inputRange: document.querySelector('.main-controls__range > [type = "range"]'),
-	getTotals: () => {
-		let totalInputs = document.getElementsByClassName('total-input');
-		for (let i = 0; i < 5; i++) {
-			let totalInput = dom['totalInput' + ' ' + i] = totalInputs[`${i}`];
-		}
-	}
 
-};
+const title = document.getElementsByTagName('h1')[0];
+const buttonPlus = document.querySelector('.screen-btn');
+const otherItemsPercent = document.querySelectorAll('.other-items.percent');
+const otherItemsNumber = document.querySelectorAll('.other-items.number');
+
+const inputRange = document.querySelector('.rollback input');
+const inputRangeValue = document.querySelector('.rollback .range-Value');
+
+const startbtn = document.getElementsByClassName('handler_btn')[0];
+const resetbtn = document.getElementsByClassName('handler_btn')[1];
+
+const total = document.getElementsByClassName('totalinput')[0];
+const totalCount = document.getElementsByClassName('totalinput')[1];
+const totalCountOther = document.getElementsByClassName('totalinput')[2];
+const fullTotalCount = document.getElementsByClassName('totalinput')[3];
+const totalCountRollback = document.getElementsByClassName('totalinput')[4];
+
+
+let screens = document.querySelectorAll('.screen');
 
 
 const appData = {
@@ -29,7 +33,6 @@ const appData = {
 	fullPrice: 0,
 	servicePercentPrice: 0,
 	services: {},
-
 
 
 	start: function () {
@@ -143,6 +146,6 @@ const appData = {
 
 };
 
-dom.getTotals();
-console.log(screens, dom);
+
+console.log(screens);
 appData.start();
