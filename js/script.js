@@ -39,9 +39,72 @@ const appData = {
 
 	init: function () {
 		appData.addTitle();
-		startbtn.addEventListener('click', appData.start);
 		buttonPlus.addEventListener('click', appData.addScreenblock);
+		startbtn.addEventListener('mouseover', appData.watchEvents);
+		//startbtn.addEventListener('click', appData.start);
 	},
+
+	watchEvents: function () {
+
+
+		let pull = [];
+		//let selects = [];
+		//let inputs = [];
+
+		console.log(pull);
+
+		function btnController() {
+
+			if (pull.includes(false)) {
+				//startbtn.disabled = true;
+				console.log('off');
+				startbtn.removeEventListener('click', appData.start);
+			} else {
+				//startbtn.disabled = false;
+				console.log('on');
+				startbtn.addEventListener('click', appData.start);
+			}
+		}
+
+		function pusher(select, input) {
+			if (select.selectedIndex !== 0 && input.value !== '') {
+				pull.push(true);
+			} else {
+				pull.push(false);
+			}
+			//selects.push(select);
+			//inputs.push(input);
+		}
+
+		// function addEvents(variable) {
+		// 	let event = variable === selects ? 'change' : 'blur';
+		// 	variable.forEach((item) => {
+		// 		item.addEventListener(event, () => {
+		// 			appData.watchEvents();
+		// 			screens = document.querySelectorAll('.screen');
+		// 		});
+		// 	});
+		// }
+
+
+
+		function forEacher(value) {
+
+			value.forEach((screen) => {
+				const select = screen.querySelector('select');
+				const input = screen.querySelector('input');
+				pusher(select, input);
+				//addEvents(selects, 'change');
+				//addEvents(inputs, 'blur');
+			});
+		}
+
+		screens = document.querySelectorAll('.screen');
+		forEacher(screens);
+		btnController();
+
+	},
+
 	addTitle: function () {
 		document.title = title.textContent;
 	},
@@ -52,10 +115,11 @@ const appData = {
 		appData.addPrices();
 		// appData.getServicePercentPrice();
 
-		// appData.logger();
-
+		appData.logger();
 
 		appData.showResult();
+
+		console.log('go start');
 	},
 
 	showResult: function () {
@@ -67,7 +131,6 @@ const appData = {
 		// totalCountRollback.value=
 	},
 
-
 	addScreens: function () {
 		screens = document.querySelectorAll('.screen');
 		screens.forEach((screen, index) => {
@@ -78,9 +141,11 @@ const appData = {
 				id: index,
 				name: selectName,
 				price: Number(select.value) * Number(input.value)
+
 			});
+
 		});
-		console.log(appData.screens);
+
 	},
 
 	addServices: function () {
@@ -109,6 +174,7 @@ const appData = {
 		});
 
 	},
+
 	addScreenblock: function () {
 		screens = document.querySelectorAll('.screen');
 		const cloneScreen = screens[0].cloneNode(true);
@@ -138,24 +204,8 @@ const appData = {
 			(appData.fullPrice * (appData.rollback / 100));
 	},
 
-	getRollbackMessage: function (price) {
-		if (price >= 30000) {
-			return "Даем скидку  в 10%";
-		} else if (price >= 15000 && price < 30000) {
-			return "Даем скидку  в 5%";
-		} else if (price > 0 && price < 15000) {
-			return "Скидка не предусмотрена";
-		} else if (0 == price) {
-			return "Что-то пошло не так";
-		}
-	},
-
 	logger: function () {
-
-		console.log(appData.fullPrice);
-		console.log(appData.servicePercentPrice);
-		console.log('services', appData.services);
-		console.log('screens', appData.screens);
+		///console.log(appData.screens);
 	}
 
 };
@@ -163,3 +213,4 @@ const appData = {
 
 
 appData.init();
+// appData.watchEvents(screens);
