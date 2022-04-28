@@ -1,5 +1,5 @@
 'use strict';
-//4commit
+
 
 const title = document.getElementsByTagName('h1')[0];
 const buttonPlus = document.querySelector('.screen-btn');
